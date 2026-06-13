@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>StudyReel — 유튜브 쇼츠를 교육으로</title>
+<meta name="description" content="스크롤 중독을 학습 습관으로. 교육용 YouTube Shorts를 앱 안에서 세로로 흐르는 학습 피드, StudyReel." />
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --ink:#0D0B08; --ink-2:#16120D; --ink-3:#1E1812;
+    --gold:#F0B649; --gold-soft:#F6CE7A; --grad:linear-gradient(118deg,#F9D78C,#E79B2C);
+    --orange:#F2784B; --ok:#62D2A0;
+    --text:#F3ECDF; --muted:#A99E8C; --line:#33291E;
+    --font:"Pretendard Variable",Pretendard,sans-serif;
+    --serif:"Fraunces",Georgia,serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:
+      radial-gradient(1100px 720px at 50% -22%, rgba(240,182,73,.16), transparent 60%),
+      radial-gradient(820px 560px at 100% 30%, rgba(242,120,75,.07), transparent 60%),
+      var(--ink);
+    color:var(--text); font-family:var(--font); font-weight:500; letter-spacing:-0.01em;
+    -webkit-font-smoothing:antialiased; min-height:100vh; overflow-x:hidden;
+  }
+  .grain{ position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.035; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .wrap{ position:relative; z-index:2; max-width:1100px; margin:0 auto; padding:0 24px; }
+
+  /* 상단 바 */
+  header{ position:relative; z-index:3; }
+  .nav{ max-width:1100px; margin:0 auto; padding:22px 24px; display:flex; align-items:center; justify-content:space-between; }
+  .brand{ font-family:var(--serif); font-size:1.5rem; font-weight:700; letter-spacing:-0.02em; }
+  .brand .a{ background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .nav .links{ display:flex; gap:1.2rem; font-family:var(--mono); font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; }
+  .nav .links a{ color:var(--muted); text-decoration:none; }
+  .nav .links a:hover{ color:var(--gold-soft); }
+
+  /* 히어로 */
+  .hero{ display:grid; grid-template-columns:1.25fr .75fr; gap:2.5rem; align-items:center; padding:48px 0 64px; }
+  .kicker{ display:inline-flex; align-items:center; gap:.5rem; font-family:var(--mono); font-size:.74rem;
+    font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--gold-soft);
+    border:1px solid rgba(240,182,73,.28); border-radius:999px; padding:.4rem .85rem; background:rgba(240,182,73,.07); }
+  .dot{ width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold); }
+  h1{ font-family:var(--serif); font-size:clamp(2.8rem,6vw,4.4rem); font-weight:700; line-height:1.0;
+    letter-spacing:-0.025em; margin:1.3rem 0 0; }
+  h1 .a{ background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .lead{ font-size:1.35rem; line-height:1.5; color:#EFE7D7; font-weight:500; margin-top:1.1rem; max-width:30ch; word-break:keep-all; }
+  .cta{ display:flex; gap:.8rem; align-items:center; flex-wrap:wrap; margin-top:1.8rem; }
+  a.dl{ display:inline-flex; align-items:center; gap:.6rem; text-decoration:none; font-weight:800; font-size:1.08rem;
+    color:#2A1B06; background:var(--grad); padding:.95rem 1.5rem; border-radius:14px;
+    box-shadow:0 14px 34px rgba(240,182,73,.3); }
+  a.dl:hover{ transform:translateY(-1px); }
+  a.ghost{ display:inline-flex; align-items:center; gap:.5rem; text-decoration:none; font-weight:700;
+    color:var(--gold-soft); border:1px solid rgba(240,182,73,.4); padding:.9rem 1.3rem; border-radius:14px; font-size:1rem; }
+  .meta{ font-family:var(--mono); font-size:.78rem; color:var(--muted); margin-top:1rem; letter-spacing:.02em; }
+
+  /* 폰 목업 */
+  .phone{ width:248px; height:520px; border-radius:40px; padding:11px; margin:0 auto;
+    background:linear-gradient(160deg,#241C13,#100B07); border:1px solid rgba(240,182,73,.22);
+    box-shadow:0 50px 110px rgba(0,0,0,.66), 0 0 0 1px rgba(240,182,73,.1), 0 0 70px rgba(240,182,73,.13);
+    transform:rotate(3deg); }
+  .phone .scr{ width:100%; height:100%; border-radius:30px; overflow:hidden; background:#F7F8FA; }
+  .phone .scr img{ width:100%; height:100%; object-fit:cover; object-position:top center; display:block; }
+
+  /* 섹션 공통 */
+  section.block{ padding:54px 0; }
+  .eyebrow{ font-family:var(--mono); font-size:.74rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); }
+  h2{ font-family:var(--serif); font-size:clamp(1.9rem,4vw,2.6rem); font-weight:600; letter-spacing:-0.02em; margin:.5rem 0 0; }
+  .sub{ color:var(--muted); font-size:1.05rem; margin-top:.6rem; max-width:54ch; line-height:1.55; }
+
+  /* 기능 카드 */
+  .feats{ display:grid; grid-template-columns:repeat(2,1fr); gap:1.1rem; margin-top:2rem; }
+  .card{ background:linear-gradient(180deg, rgba(255,250,240,.05), rgba(255,250,240,.012));
+    border:1px solid rgba(255,240,214,.09); border-radius:18px; padding:1.5rem 1.6rem;
+    box-shadow:0 16px 42px rgba(0,0,0,.4); }
+  .card .ic{ font-size:1.8rem; }
+  .card h3{ font-size:1.2rem; color:#FFF7E8; margin:.6rem 0 .4rem; font-weight:800; }
+  .card p{ font-size:1rem; line-height:1.5; color:#D9D0C0; }
+  .card .mono{ font-family:var(--mono); color:var(--gold-soft); }
+
+  /* 데모 */
+  .demo{ display:grid; grid-template-columns:.8fr 1.2fr; gap:2.5rem; align-items:center; }
+  .demo .phone{ width:230px; height:484px; transform:none; }
+  .steps{ display:flex; flex-direction:column; gap:.7rem; margin-top:1.4rem; }
+  .step{ display:flex; gap:.9rem; align-items:flex-start; }
+  .step .n{ font-family:var(--serif); font-size:1.2rem; font-weight:600; color:var(--gold); min-width:1.6ch; line-height:1.4; }
+  .step .t{ font-size:1.05rem; color:#EBE2D2; line-height:1.45; } .step .t b{ color:#FFF7E8; }
+
+  /* 다운로드 CTA 박스 */
+  .dlbox{ text-align:center; background:linear-gradient(180deg, rgba(255,250,240,.06), rgba(255,250,240,.015));
+    border:1px solid rgba(240,182,73,.28); border-radius:24px; padding:3rem 2rem; margin:1rem 0; }
+  .dlbox h2{ margin-bottom:.4rem; }
+  .install{ display:inline-block; text-align:left; margin-top:1.6rem; color:var(--muted); font-size:.95rem; line-height:1.9; }
+  .install b{ color:var(--gold-soft); font-weight:700; }
+
+  footer{ border-top:1px solid var(--line); padding:32px 0 56px; color:var(--muted); }
+  footer .frow{ display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; align-items:center; }
+  footer a{ color:var(--gold-soft); text-decoration:none; }
+  footer .mono{ font-family:var(--mono); font-size:.78rem; letter-spacing:.04em; }
+
+  @media (max-width:780px){
+    .hero{ grid-template-columns:1fr; text-align:center; gap:1.5rem; }
+    .lead{ margin-left:auto; margin-right:auto; } .cta{ justify-content:center; }
+    .feats{ grid-template-columns:1fr; } .demo{ grid-template-columns:1fr; text-align:center; }
+    .step{ text-align:left; } .nav .links{ display:none; }
+  }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<header>
+  <div class="nav">
+    <div class="brand">Study<span class="a">Reel</span></div>
+    <div class="links">
+      <a href="#features">기능</a>
+      <a href="#demo">데모</a>
+      <a href="../">발표 덱</a>
+      <a href="https://github.com/poro832/StudyReel" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- 히어로 -->
+  <section class="hero">
+    <div>
+      <span class="kicker"><span class="dot"></span> Android · 교육용 쇼츠 학습 앱</span>
+      <h1>스크롤 중독을<br/><span class="a">학습 습관</span>으로.</h1>
+      <p class="lead">유튜브 쇼츠를 앱 안에서 세로로 흐르는 <strong>교육 피드</strong>로. 토픽만 고르면 알고리즘에 휘둘리지 않는 학습 쇼츠가 소리와 함께 자동재생됩니다.</p>
+      <div class="cta">
+        <a class="dl" href="studyreel.apk" download>⬇ APK 다운로드</a>
+        <a class="ghost" href="#demo">데모 보기</a>
+      </div>
+      <div class="meta">Android 7.0+ · 약 55 MB · Flutter · 학습/포트폴리오 데모(iOS 미지원)</div>
+    </div>
+    <div>
+      <div class="phone"><div class="scr"><img src="../assets/title-screen.png" alt="StudyReel 온보딩 화면" /></div></div>
+    </div>
+  </section>
+
+  <!-- 기능 -->
+  <section class="block" id="features">
+    <div class="eyebrow">Why StudyReel</div>
+    <h2>소비하던 습관, 그대로 학습으로</h2>
+    <p class="sub">틱톡·릴스의 세로 피드 경험은 그대로 두고 콘텐츠만 교육으로 바꿨습니다.</p>
+    <div class="feats">
+      <div class="card">
+        <div class="ic">▶️</div>
+        <h3>인앱 자동재생</h3>
+        <p>YouTube로 튕기지 않고 앱 안에서 소리와 함께 재생. 쇼츠 임베드를 막던 <span class="mono">error 152</span>를 <span class="mono">youtube-nocookie</span> 호스트로 돌파했습니다.</p>
+      </div>
+      <div class="card">
+        <div class="ic">🎯</div>
+        <h3>학습 전용 큐레이션</h3>
+        <p>6개 카테고리 26개 세부 토픽 + 학습 수준(초·중·고·대학)으로 검색해 예능을 걸러낸 교육 쇼츠만.</p>
+      </div>
+      <div class="card">
+        <div class="ic">♾️</div>
+        <h3>무한 스크롤 · 시청 기록</h3>
+        <p>끝까지 내려도 새 영상, 본 영상은 다시 안 나옵니다. 북마크로 저장하고 프로필에서 다시보기.</p>
+      </div>
+      <div class="card">
+        <div class="ic">🔥</div>
+        <h3>학습 스트릭</h3>
+        <p>실제로 본 영상 기준 연속 학습일을 기록해 습관을 시각화합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 데모 -->
+  <section class="block" id="demo">
+    <div class="demo">
+      <div class="phone"><div class="scr"><img src="../assets/vision-demo.gif" alt="StudyReel 실제 구동 — 인앱 자동재생" /></div></div>
+      <div>
+        <div class="eyebrow">In action</div>
+        <h2>출근길 5분, 앱 하나로 학습</h2>
+        <div class="steps">
+          <div class="step"><span class="n">1</span><span class="t">로그인 → 관심 토픽 + <b>학습 수준</b> 선택</span></div>
+          <div class="step"><span class="n">2</span><span class="t">교육 쇼츠가 <b>소리와 함께 인앱 자동재생</b>, 스와이프로 다음</span></div>
+          <div class="step"><span class="n">3</span><span class="t">더블탭 ⭐ 저장 + <b>무한 스크롤</b></span></div>
+          <div class="step"><span class="n">4</span><span class="t">프로필에서 🔥 학습 스트릭 · 저장한 영상 · 최근 본 영상</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 다운로드 -->
+  <section class="block">
+    <div class="dlbox">
+      <div class="eyebrow">Download</div>
+      <h2>지금 설치해 보세요</h2>
+      <p class="sub" style="margin:.4rem auto 0;">Android 기기에서 아래 버튼으로 APK를 받아 설치하세요.</p>
+      <div class="cta" style="justify-content:center; margin-top:1.6rem;">
+        <a class="dl" href="studyreel.apk" download>⬇ studyreel.apk 다운로드</a>
+      </div>
+      <div class="install">
+        <b>설치 방법</b><br/>
+        1. 위 버튼으로 APK 다운로드<br/>
+        2. 파일 열기 → "출처를 알 수 없는 앱" 설치 허용<br/>
+        3. 설치 후 Google 계정으로 로그인 → 토픽 선택<br/>
+        <span style="color:#8d8475;">※ Android 7.0+ · iOS 미지원 · 학습/포트폴리오 데모입니다.</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap frow">
+    <div class="mono">StudyReel · 신구대 클라우드 캡스톤 · 1인 + AI Agent</div>
+    <div class="mono">
+      <a href="../">발표 덱</a> · <a href="../wbs.html">WBS</a> · <a href="https://github.com/poro832/StudyReel" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
