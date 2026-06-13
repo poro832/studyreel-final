@@ -167,7 +167,10 @@
   .bonus .b .tag{ font-family:var(--mono); font-size:.72rem; font-weight:600; letter-spacing:.1em;
     color:var(--gold); text-transform:uppercase; }
   .bonus .b h4{ font-size:1.12rem; color:#FFF7E8; margin:.4rem 0 .5rem; font-weight:800; }
-  .bonus .b p{ font-size:.96rem; line-height:1.46; color:#D9D0C0; margin:0; }
+  .bonus .b p{ font-size:.94rem; line-height:1.44; color:#D9D0C0; margin:0; }
+  .bonus .b .repo{ display:inline-block; margin-top:.6rem; font-family:var(--mono); font-size:.76rem; font-weight:600;
+    color:#2A1B06; background:var(--grad); padding:.28rem .6rem; border-radius:8px; text-decoration:none;
+    box-shadow:0 6px 16px rgba(240,182,73,.25); }
 
   .reveal .progress{ color:var(--gold); height:3px; }
   .reveal .slide-number{ background:transparent; color:var(--muted); font-family:var(--mono); font-size:.7rem; }
@@ -426,11 +429,13 @@
     <section>
       <h3>11 — AI Agent 워크플로우 <span style="color:var(--orange);">· 가산점</span></h3>
       <div class="bonus">
-        <div class="b">
+        <div class="b" style="border-color:rgba(240,182,73,.5);">
           <div class="tag">① 스킬 · 워크플로우</div>
-          <h4>Claude Code 스킬 체인</h4>
-          <p>brainstorming → writing-plans → executing-plans(TDD) → systematic-debugging.
-             막히면 GPT·Gemini 교차검증.</p>
+          <h4>스킬 체인 + 자작 플러그인 <span class="accent">Keel</span></h4>
+          <p>Superpowers 스킬 체인(plan → execute → debug)에 더해,
+             <strong>직접 만들어 공개한 Claude Code 플러그인 Keel</strong>(MIT)로
+             라우팅·범위 정지·단일가설 디버깅·증거기반 검증을 규칙화.</p>
+          <a class="repo" href="https://github.com/poro832/Keel">github.com/poro832/Keel ↗</a>
         </div>
         <div class="b" style="border-color:rgba(242,120,75,.45);">
           <div class="tag">② 본인만의 기법</div>
