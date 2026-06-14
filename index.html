@@ -294,7 +294,7 @@
     <section>
       <h3>04 — 프로젝트 진행 및 완료</h3>
       <div class="grid3" style="margin-bottom:.4rem;">
-        <div class="card"><div class="big accent">58</div><div class="lbl">커밋</div></div>
+        <div class="card"><div class="big accent">67</div><div class="lbl">커밋</div></div>
         <div class="card"><div class="big accent-o">5</div><div class="lbl">ADR 의사결정 기록</div></div>
         <div class="card" style="border-color:rgba(98,210,160,.4);"><div class="big" style="color:var(--ok);">완료</div><div class="lbl">Must·Should·Could 전 항목 · 릴리스 APK 배포</div></div>
       </div>
@@ -360,7 +360,7 @@
         </div>
         <div class="card" style="border-color:rgba(240,182,73,.4);">
           <h3 style="color:var(--blue-soft);">코드 품질 관리</h3>
-          <p style="margin:.3rem 0;">✓ <span class="mono">flutter analyze</span> <strong>에러/경고 0건</strong> — AGENTS.md 게이트로 명문화</p>
+          <p style="margin:.3rem 0;">✓ <span class="mono">flutter analyze</span> <strong>에러/경고 0건</strong> — AGENTS.md 게이트 + GitHub Actions CI</p>
           <p style="margin:.3rem 0;">✓ DRY — <span class="mono">youtube_launcher</span>·<span class="mono">VideoListTile</span> 공통화</p>
           <p style="margin:.3rem 0;">✓ 피벗 후 데드코드 즉시 제거 · 그린 상태에서만 커밋</p>
         </div>
@@ -374,10 +374,10 @@
         <thead><tr><th>종류</th><th>도구</th><th>개수</th><th>대상</th></tr></thead>
         <tbody>
           <tr>
-            <td class="ttl">단위 · 위젯</td>
+            <td class="ttl">단위 · 위젯 · E2E</td>
             <td class="mono">flutter_test · fake_cloud_firestore · firebase_auth_mocks</td>
-            <td><span class="big accent" style="font-size:1.6rem;">50</span></td>
-            <td>캐시·북마크·스트릭·중복제거·토픽·서비스 필터</td>
+            <td><span class="big accent" style="font-size:1.6rem;">57</span></td>
+            <td>캐시·북마크·스트릭·중복제거·토픽·E2E 플로우</td>
           </tr>
           <tr>
             <td class="ttl">통합</td>
@@ -388,8 +388,9 @@
         </tbody>
       </table>
       <p style="margin-top:1rem; color:var(--blue-soft);">
-        시간 의존 로직(스트릭)은 <span class="mono">now</span> 콜백 주입 → <strong>결정적 테스트</strong> ·
-        무한 스크롤 중복제거는 순수 함수 <span class="mono">dedupeAppend</span>로 분리해 TDD
+        시간 의존 로직은 <span class="mono">now</span> 콜백 주입 → <strong>결정적 테스트</strong> ·
+        무한 스크롤 중복제거는 순수 함수 <span class="mono">dedupeAppend</span>로 분리 ·
+        <strong>GitHub Actions CI</strong>가 푸시마다 analyze 0건 + 전체 테스트 자동 실행
       </p>
     </section>
 
