@@ -7,78 +7,84 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
 <style>
   :root{
-    --ink:#0B0F19; --ink-2:#121826; --ink-3:#1B2436;
-    --blue:#3182F6; --blue-soft:#6BA6FF; --orange:#FF8A3D;
-    --text:#F4F6FB; --muted:#8A93A6; --line:#26314A; --ok:#34D399;
-    --font:"Pretendard Variable",Pretendard,sans-serif; --mono:"JetBrains Mono",monospace;
+    /* 라이트 / 쇼츠 — 덱과 동일 팔레트 */
+    --ink:#FFFFFF; --ink-2:#F6F4F7; --ink-3:#EFECF1;
+    --gold:#FF3B5C; --blue:#FF3B5C; --blue-soft:#C81E45;
+    --grad:linear-gradient(120deg,#FF3B5C,#FF7A3D);
+    --orange:#E0701A; --ok:#0E9E70;
+    --text:#16131A; --muted:#6A636F; --line:#E7E2EA;
+    --font:"Pretendard Variable",Pretendard,sans-serif;
+    --serif:"Archivo","Pretendard Variable",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
   }
   *{ box-sizing:border-box; }
   html,body{ margin:0; background:var(--ink); color:var(--text); font-family:var(--font); }
   body{
     background:
-      radial-gradient(1100px 500px at 85% -8%, rgba(49,130,246,.18), transparent 60%),
-      radial-gradient(800px 460px at 0% 100%, rgba(255,138,61,.10), transparent 60%),
+      radial-gradient(1100px 500px at 85% -8%, rgba(255,59,92,.08), transparent 60%),
+      radial-gradient(800px 460px at 0% 100%, rgba(224,112,26,.06), transparent 60%),
       var(--ink);
-    min-height:100vh; padding:48px clamp(20px,5vw,80px) 80px;
+    min-height:100vh; padding:48px clamp(20px,5vw,80px) 80px; -webkit-font-smoothing:antialiased;
   }
   .grid-bg{ position:fixed; inset:0; pointer-events:none; z-index:0;
-    background-image:
-      linear-gradient(to right, rgba(255,255,255,.03) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255,255,255,.03) 1px, transparent 1px);
-    background-size:64px 64px;
-    mask-image:radial-gradient(circle at 50% 30%, black, transparent 80%); }
+    background-image:radial-gradient(rgba(255,90,120,.10) 1px, transparent 1.5px);
+    background-size:30px 30px;
+    mask-image:radial-gradient(circle at 50% 25%, black, transparent 78%); opacity:.5; }
   .wrap{ position:relative; z-index:2; max-width:1180px; margin:0 auto; }
 
   .top{ display:flex; align-items:flex-end; justify-content:space-between; gap:1rem; flex-wrap:wrap; margin-bottom:1.6rem; }
-  .kicker{ display:inline-flex; align-items:center; gap:.5rem; font-family:var(--mono); font-size:.78rem;
-    font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--blue-soft);
-    border:1px solid var(--line); border-radius:999px; padding:.4rem .85rem; background:rgba(49,130,246,.08); }
-  .dot{ width:8px;height:8px;border-radius:50%;background:var(--orange);box-shadow:0 0 12px var(--orange); }
-  h1{ font-size:2.6rem; font-weight:800; letter-spacing:-0.03em; margin:.8rem 0 .2rem; }
-  h1 .accent{ color:var(--blue); }
+  .kicker{ display:inline-flex; align-items:center; gap:.5rem; font-family:var(--mono); font-size:.74rem;
+    font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--blue-soft);
+    border:1px solid rgba(255,59,92,.32); border-radius:999px; padding:.4rem .85rem; background:rgba(255,59,92,.07); }
+  .dot{ width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold); }
+  h1{ font-family:var(--serif); font-size:2.8rem; font-weight:800; letter-spacing:-0.03em; margin:.8rem 0 .2rem; }
+  h1 .accent{ background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
   .sub{ color:var(--muted); font-size:1.05rem; }
-  a.back{ text-decoration:none; color:var(--blue-soft); font-weight:700; border:1px solid var(--line);
-    border-radius:12px; padding:.6rem 1rem; background:var(--ink-2); }
-  a.back:hover{ border-color:var(--blue); }
+  a.back{ text-decoration:none; color:var(--blue-soft); font-weight:700; border:1px solid rgba(255,59,92,.4);
+    border-radius:12px; padding:.6rem 1rem; background:#FFFFFF; }
+  a.back:hover{ border-color:var(--gold); }
 
   .cards{ display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin:1.4rem 0 2rem; }
-  .card{ background:linear-gradient(180deg,var(--ink-3),var(--ink-2)); border:1px solid var(--line);
-    border-radius:16px; padding:1.1rem 1.2rem; }
-  .card .big{ font-family:var(--mono); font-size:2.2rem; font-weight:700; line-height:1; color:#fff; }
-  .card .big.b{ color:var(--blue); } .card .big.o{ color:var(--orange); } .card .big.g{ color:var(--ok); }
-  .card .lbl{ color:var(--muted); font-size:.9rem; margin-top:.4rem; }
+  .card{ background:#FFFFFF; border:1px solid rgba(255,59,92,.22);
+    border-radius:16px; padding:1.1rem 1.2rem; box-shadow:0 10px 30px rgba(30,15,20,.08); }
+  .card .big{ font-family:var(--serif); font-size:2.4rem; font-weight:800; line-height:1; color:var(--text); letter-spacing:-0.02em; }
+  .card .big.b{ background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .card .big.o{ color:var(--orange); } .card .big.g{ color:var(--ok); }
+  .card .lbl{ color:var(--muted); font-size:.9rem; margin-top:.4rem; line-height:1.4; }
 
   .barwrap{ display:flex; align-items:center; gap:1rem; margin:.4rem 0 2.2rem; }
-  .bar{ flex:1; height:16px; border-radius:999px; background:var(--ink-3); border:1px solid var(--line); overflow:hidden; }
-  .bar > span{ display:block; height:100%; width:62%; border-radius:999px;
-    background:linear-gradient(90deg,var(--blue),var(--blue-soft)); box-shadow:0 0 18px rgba(49,130,246,.6); }
-  .barwrap .pct{ font-family:var(--mono); font-size:1.5rem; font-weight:700; color:var(--blue); }
+  .bar{ flex:1; height:16px; border-radius:999px; background:#F1ECF1; border:1px solid var(--line); overflow:hidden; }
+  .bar > span{ display:block; height:100%; width:100%; border-radius:999px;
+    background:var(--grad); box-shadow:0 0 18px rgba(255,59,92,.3); }
+  .barwrap .pct{ font-family:var(--serif); font-size:1.6rem; font-weight:800;
+    background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
 
-  h2{ font-size:1.5rem; font-weight:800; margin:2.2rem 0 1rem; letter-spacing:-0.02em; }
+  h2{ font-size:1.5rem; font-weight:800; margin:2.2rem 0 1rem; letter-spacing:-0.02em; color:var(--text); }
   h2 .mono{ font-family:var(--mono); color:var(--muted); font-size:1rem; font-weight:500; margin-left:.5rem; }
 
-  .panel{ background:linear-gradient(180deg,var(--ink-3),var(--ink-2)); border:1px solid var(--line);
-    border-radius:18px; padding:1.2rem 1.2rem .6rem; overflow-x:auto; }
+  .panel{ background:#FFFFFF; border:1px solid rgba(255,59,92,.18);
+    border-radius:18px; padding:1.2rem 1.2rem .6rem; overflow-x:auto; box-shadow:0 10px 30px rgba(30,15,20,.07); }
   pre.mermaid{ margin:0; background:transparent; text-align:center; min-height:120px; }
 
   table{ width:100%; border-collapse:collapse; font-size:.98rem; }
-  thead th{ text-align:left; font-family:var(--mono); font-size:.78rem; letter-spacing:.08em; text-transform:uppercase;
-    color:var(--muted); padding:.7rem .8rem; border-bottom:1px solid var(--line); }
-  tbody td{ padding:.8rem .8rem; border-bottom:1px solid rgba(38,49,74,.5); color:#D7DCE7; vertical-align:top; }
-  tbody tr:hover{ background:rgba(49,130,246,.05); }
-  td .ttl{ color:#fff; font-weight:700; }
+  thead th{ text-align:left; font-family:var(--mono); font-size:.74rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--muted); padding:.7rem .8rem; border-bottom:1px solid var(--line); font-weight:500; }
+  tbody td{ padding:.8rem .8rem; border-bottom:1px solid rgba(20,15,25,.08); color:#2C2832; vertical-align:top; }
+  tbody tr:hover{ background:rgba(255,59,92,.05); }
+  td .ttl{ color:#15131A; font-weight:700; }
   td .desc{ color:var(--muted); font-size:.86rem; margin-top:.2rem; }
   .st{ display:inline-flex; align-items:center; gap:.4rem; font-weight:700; font-size:.85rem; white-space:nowrap;
     padding:.25rem .6rem; border-radius:999px; }
-  .st.done{ color:var(--ok); background:rgba(52,211,153,.12); border:1px solid rgba(52,211,153,.3); }
-  .st.now{ color:var(--orange); background:rgba(255,138,61,.12); border:1px solid rgba(255,138,61,.35); }
-  .st.todo{ color:var(--blue-soft); background:rgba(49,130,246,.10); border:1px solid rgba(49,130,246,.3); }
+  .st.done{ color:var(--ok); background:rgba(14,158,112,.10); border:1px solid rgba(14,158,112,.32); }
+  .st.now{ color:var(--orange); background:rgba(224,112,26,.10); border:1px solid rgba(224,112,26,.34); }
+  .st.todo{ color:var(--blue-soft); background:rgba(255,59,92,.08); border:1px solid rgba(255,59,92,.3); }
   .moscow{ font-family:var(--mono); font-size:.78rem; font-weight:700; }
-  .moscow.must{ color:#FF7A7A; } .moscow.should{ color:var(--blue-soft); } .moscow.could{ color:var(--muted); }
+  .moscow.must{ color:#C0392B; } .moscow.should{ color:var(--blue-soft); } .moscow.could{ color:var(--muted); }
 
   footer{ margin-top:2.5rem; color:var(--muted); font-family:var(--mono); font-size:.78rem; letter-spacing:.06em; }
 </style>
@@ -98,46 +104,48 @@
 
   <!-- 요약 카드 -->
   <div class="cards">
-    <div class="card"><div class="big b">62%</div><div class="lbl">Must 기능 진척</div></div>
-    <div class="card"><div class="big g">9</div><div class="lbl">완료 작업 묶음</div></div>
-    <div class="card"><div class="big o">3</div><div class="lbl">진행 / 예정</div></div>
-    <div class="card"><div class="big">19</div><div class="lbl">통과 테스트</div></div>
+    <div class="card"><div class="big g">100%</div><div class="lbl">Must · Should · Could 전 항목 완료</div></div>
+    <div class="card"><div class="big b">67</div><div class="lbl">커밋</div></div>
+    <div class="card"><div class="big">61</div><div class="lbl">테스트 (단위·위젯·E2E 57 + 통합 4)</div></div>
+    <div class="card"><div class="big o">5</div><div class="lbl">ADR 의사결정 · CI passing</div></div>
   </div>
 
   <div class="barwrap">
     <div class="bar"><span></span></div>
-    <div class="pct">62%</div>
+    <div class="pct">100%</div>
   </div>
 
   <!-- Gantt -->
-  <h2>일정 (Gantt) <span class="mono">W08 → W15</span></h2>
+  <h2>일정 (Gantt) <span class="mono">4월 → 6월</span></h2>
   <div class="panel">
     <pre class="mermaid">
 gantt
   dateFormat  YYYY-MM-DD
   axisFormat  %m/%d
-  todayMarker stroke-width:2px,stroke:#FF8A3D,opacity:0.9
+  todayMarker stroke-width:2px,stroke:#E0701A,opacity:0.9
 
   section 기획·설계
-  비전·문제 정의 / 스펙        :done,  p1, 2026-04-21, 7d
-  ADR 설계 결정 (5건)          :done,  p2, 2026-04-25, 6d
+  비전·문제 정의 / 스펙          :done,  p1, 2026-04-21, 7d
+  ADR 설계 결정 (5건)            :done,  p2, 2026-04-25, 6d
 
   section 핵심 구현
-  프로젝트·Firebase 세팅       :done,  c1, 2026-04-28, 4d
-  YouTube 쇼츠 피벗·캐싱       :done,  c2, 2026-04-29, 3d
-  온보딩·탐색·프로필·스트릭    :done,  c3, 2026-05-07, 12d
-  인앱 재생·60초 필터          :done,  c4, 2026-05-19, 3d
+  프로젝트·Firebase 세팅         :done,  c1, 2026-04-28, 4d
+  YouTube 쇼츠 피벗·캐싱         :done,  c2, 2026-04-29, 3d
+  온보딩·탐색·프로필·스트릭      :done,  c3, 2026-05-07, 12d
+  인앱 재생·60초 필터            :done,  c4, 2026-05-19, 3d
 
   section 고도화
-  라이트 UI 리디자인           :done,  e1, 2026-05-21, 2d
-  error 152 돌파·자동재생      :done,  e2, 2026-05-26, 1d
-  큐레이션·새로고침·캐시 교체  :active, e3, 2026-05-26, 2d
-  9:16 풀화면 UI               :        e4, 2026-05-28, 5d
-  무한 스크롤·시청 기록        :        e5, 2026-06-02, 5d
+  라이트 UI 리디자인             :done,  e1, 2026-05-21, 2d
+  error 152 돌파·자동재생        :done,  e2, 2026-05-26, 1d
+  큐레이션·토픽 세분화(6카테고리) :done,  e3, 2026-05-27, 4d
+  9:16 풀화면·무한 스크롤·시청기록 :done, e4, 2026-05-31, 6d
+  로그인·계정 개인화·학습 수준   :done,  e5, 2026-06-06, 4d
 
-  section 마무리
-  Firestore 보안 규칙·통합테스트 :      f1, 2026-06-05, 4d
-  최종 발표                     :crit,  f2, 2026-06-09, 2d
+  section 마무리·품질
+  보안 규칙·통합 테스트          :done,  f1, 2026-06-08, 3d
+  E2E·GitHub Actions CI          :done,  f2, 2026-06-11, 2d
+  릴리스 APK·소개/다운로드 배포  :done,  f3, 2026-06-13, 2d
+  최종 발표                       :crit, active, f4, 2026-06-16, 2d
 </pre>
   </div>
 
@@ -150,10 +158,10 @@ gantt
       </thead>
       <tbody>
         <tr>
-          <td><div class="ttl">온보딩 · 토픽 선택</div><div class="desc">관심사 3개+ 검증, Riverpod Notifier</div></td>
+          <td><div class="ttl">온보딩 · 토픽 선택</div><div class="desc">6개 카테고리 26개 세부 토픽 + 학습 수준</div></td>
           <td><span class="moscow must">MUST</span></td>
           <td><span class="st done">● 완료</span></td>
-          <td>결정적 테스트 포함</td>
+          <td>그룹형 선택 · 결정적 테스트</td>
         </tr>
         <tr>
           <td><div class="ttl">인앱 쇼츠 피드</div><div class="desc">세로 PageView · IFrame 플레이어 · error 152 돌파</div></td>
@@ -162,52 +170,76 @@ gantt
           <td>youtube-nocookie 우회</td>
         </tr>
         <tr>
-          <td><div class="ttl">소리 · 스와이프 자동재생</div><div class="desc">넘기면 다음 영상 자동재생 (쇼츠 UX)</div></td>
+          <td><div class="ttl">소리 · 스와이프 자동재생</div><div class="desc">넘기면 다음 영상 자동재생 · 썸네일 우선 · 더블탭 저장</div></td>
           <td><span class="moscow must">MUST</span></td>
           <td><span class="st done">● 완료</span></td>
           <td>Z Fold7 실기기 검증</td>
         </tr>
         <tr>
-          <td><div class="ttl">콘텐츠 큐레이션</div><div class="desc">학습 키워드 검색 + relevance 정렬로 예능 배제</div></td>
-          <td><span class="moscow must">MUST</span></td>
-          <td><span class="st now">◐ 진행</span></td>
-          <td>품질 튜닝 중</td>
-        </tr>
-        <tr>
-          <td><div class="ttl">새로고침 · 토픽 인지 캐시</div><div class="desc">새 카테고리/새로고침 = 새 영상, 북마크 보존</div></td>
+          <td><div class="ttl">콘텐츠 큐레이션</div><div class="desc">학습 키워드 + 교육 카테고리·조회수 품질 랭킹으로 예능 배제</div></td>
           <td><span class="moscow must">MUST</span></td>
           <td><span class="st done">● 완료</span></td>
-          <td>Firestore 캐싱</td>
+          <td>토픽 세분화로 정밀도↑</td>
         </tr>
         <tr>
-          <td><div class="ttl">탐색/검색 · 프로필 · 학습 스트릭</div><div class="desc">키워드 검색, 북마크 다시보기, 연속 학습일</div></td>
+          <td><div class="ttl">캐시 · 토픽 인지 · 3일 TTL</div><div class="desc">캐시 우선/없으면 API, 북마크 보존, 재방문 신선도</div></td>
+          <td><span class="moscow must">MUST</span></td>
+          <td><span class="st done">● 완료</span></td>
+          <td>Firestore 영구 캐싱</td>
+        </tr>
+        <tr>
+          <td><div class="ttl">탐색 · 프로필 · 학습 스트릭</div><div class="desc">키워드 검색, 북마크 다시보기, 연속 학습일</div></td>
           <td><span class="moscow should">SHOULD</span></td>
           <td><span class="st done">● 완료</span></td>
           <td>injectable clock 테스트</td>
         </tr>
         <tr>
-          <td><div class="ttl">9:16 풀화면 UI</div><div class="desc">풀블리드 세로 영상 + 오버레이 (틱톡식)</div></td>
+          <td><div class="ttl">로그인 · 계정 개인화 · 학습 수준</div><div class="desc">Google 로그인, 온보딩 1회, 초/중/고/대학</div></td>
           <td><span class="moscow should">SHOULD</span></td>
-          <td><span class="st now">◐ 진행</span></td>
-          <td>실기기 시각 검증 대기</td>
+          <td><span class="st done">● 완료</span></td>
+          <td>계정 기반 시청기록</td>
         </tr>
         <tr>
-          <td><div class="ttl">무한 스크롤 · 시청 기록</div><div class="desc">끝에서 다음 묶음 자동 로딩</div></td>
+          <td><div class="ttl">9:16 풀화면 UI · 다크/라이트 테마</div><div class="desc">풀블리드 세로 영상 + 오버레이 (틱톡식)</div></td>
+          <td><span class="moscow should">SHOULD</span></td>
+          <td><span class="st done">● 완료</span></td>
+          <td>실기기 시각 검증</td>
+        </tr>
+        <tr>
+          <td><div class="ttl">무한 스크롤 · 시청 기록</div><div class="desc">끝에서 다음 묶음 자동 로딩, 본 영상 제외</div></td>
           <td><span class="moscow could">COULD</span></td>
-          <td><span class="st todo">○ 예정</span></td>
-          <td>W13–14</td>
+          <td><span class="st done">● 완료</span></td>
+          <td>pageToken + dedupeAppend</td>
         </tr>
         <tr>
-          <td><div class="ttl">Firestore 보안 규칙 · 통합 테스트</div><div class="desc">테스트 모드 → 규칙 강화, integration_test</div></td>
+          <td><div class="ttl">Firestore 보안 규칙 · 통합 테스트</div><div class="desc">본인 데이터만 읽기/쓰기, 규칙 통합 테스트</div></td>
           <td><span class="moscow must">MUST</span></td>
-          <td><span class="st todo">○ 예정</span></td>
-          <td>W15</td>
+          <td><span class="st done">● 완료</span></td>
+          <td>rules-unit-testing 4건</td>
+        </tr>
+        <tr>
+          <td><div class="ttl">E2E · GitHub Actions CI</div><div class="desc">헤드리스 풀플로우 + 푸시마다 analyze 0 + 57 테스트</div></td>
+          <td><span class="moscow should">SHOULD</span></td>
+          <td><span class="st done">● 완료</span></td>
+          <td>CI 배지 passing</td>
+        </tr>
+        <tr>
+          <td><div class="ttl">릴리스 APK · 소개/다운로드 페이지</div><div class="desc">GitHub Pages 호스팅, README 설치 가이드</div></td>
+          <td><span class="moscow could">COULD</span></td>
+          <td><span class="st done">● 완료</span></td>
+          <td>/app 다운로드</td>
+        </tr>
+        <tr>
+          <td><div class="ttl">최종 발표 (덱 · 대본 · 데모)</div><div class="desc">5분 발표 + 30초 데모, 배점 매핑 리허설</div></td>
+          <td><span class="moscow must">MUST</span></td>
+          <td><span class="st now">◐ 진행</span></td>
+          <td>발표 D-day</td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <footer>StudyReel · 커밋 타임라인 기반 · 갱신 2026-05</footer>
+  <footer>StudyReel · 커밋 타임라인 기반 · 갱신 2026-06</footer>
 </div>
 
 <script type="module">
@@ -215,20 +247,19 @@ gantt
   mermaid.initialize({
     startOnLoad:false, theme:'base',
     themeVariables:{
-      primaryColor:'#1B2436', primaryBorderColor:'#3182F6', primaryTextColor:'#F4F6FB',
-      lineColor:'#6BA6FF',
-      // gantt 색
-      taskBkgColor:'#3182F6', taskBorderColor:'#6BA6FF', taskTextColor:'#fff',
-      taskTextDarkColor:'#fff', taskTextOutsideColor:'#D7DCE7',
-      doneTaskBkgColor:'#26314A', doneTaskBorderColor:'#46557A',
-      activeTaskBkgColor:'#FF8A3D', activeTaskBorderColor:'#FFB37A',
-      critBkgColor:'#FF5C5C', critBorderColor:'#FF8A8A',
-      gridColor:'#26314A', sectionBkgColor:'rgba(49,130,246,.05)',
-      altSectionBkgColor:'rgba(255,255,255,.02)', sectionBkgColor2:'rgba(255,138,61,.05)',
-      todayLineColor:'#FF8A3D',
+      primaryColor:'#FFFFFF', primaryBorderColor:'#FF3B5C', primaryTextColor:'#16131A',
+      lineColor:'#C81E45',
+      // gantt 색 (라이트)
+      taskBkgColor:'#FF3B5C', taskBorderColor:'#FF7A3D', taskTextColor:'#fff',
+      taskTextDarkColor:'#16131A', taskTextOutsideColor:'#2C2832',
+      doneTaskBkgColor:'#FBDCE3', doneTaskBorderColor:'#FF9DB1',
+      activeTaskBkgColor:'#E0701A', activeTaskBorderColor:'#F0A968',
+      critBkgColor:'#FF3B5C', critBorderColor:'#FF7A3D',
+      gridColor:'#E7E2EA', sectionBkgColor:'rgba(255,59,92,.05)',
+      altSectionBkgColor:'rgba(20,15,25,.02)', sectionBkgColor2:'rgba(224,112,26,.05)',
+      todayLineColor:'#E0701A',
     },
   });
-  // 일반(가시) 페이지라 run()으로 충분. 폰트 로드 후 측정.
   if (document.fonts && document.fonts.ready) { try { await document.fonts.ready; } catch(e){} }
   try {
     await mermaid.run({ querySelector:'pre.mermaid', suppressErrors:true });
