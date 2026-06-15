@@ -160,15 +160,15 @@
 
   /* 가산점 블록 */
   .bonus{ display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
-  .bonus .b{ background:#FFFFFF; display:flex; flex-direction:column;
+  .bonus .b{ background:#FFFFFF;
     border:1px solid rgba(255,59,92,.18); border-radius:16px; padding:1.1rem 1.1rem;
     box-shadow:0 8px 22px rgba(30,15,20,.07); }
   .bonus .b .tag{ font-family:var(--mono); font-size:.72rem; font-weight:600; letter-spacing:.1em;
     color:var(--gold); text-transform:uppercase; }
   .bonus .b h4{ font-size:1.12rem; color:#000000; margin:.4rem 0 .5rem; font-weight:800; }
   .bonus .b p{ font-size:.94rem; line-height:1.44; color:#3A3540; margin:0; }
-  .bonus .b .repo{ align-self:flex-start; margin-top:auto; padding-top:0; font-family:var(--mono); font-size:.76rem; font-weight:700;
-    color:#FFFFFF; background:var(--grad); padding:.32rem .62rem; border-radius:8px; text-decoration:none;
+  .repo{ display:inline-block; font-family:var(--mono); font-size:.78rem; font-weight:700;
+    color:#FFFFFF; background:var(--grad); padding:.4rem .85rem; border-radius:999px; text-decoration:none;
     box-shadow:0 6px 16px rgba(255,59,92,.28); }
 
   .reveal .progress{ color:var(--gold); height:3px; }
@@ -411,7 +411,7 @@
 
     <!-- 11. ADR 요약 -->
     <section>
-      <h3>10 — ADR 요약 · 질의응답 준비</h3>
+      <h3>10 — ADR 요약</h3>
       <table class="tbl" style="font-size:1.02rem;">
         <thead><tr><th>ADR</th><th>결정</th><th>핵심 사유</th></tr></thead>
         <tbody>
@@ -422,7 +422,6 @@
           <tr><td class="mono">0005</td><td class="ttl">url_launcher → 인앱 iframe</td><td>“인앱이 안 되면 컨셉이 죽는다”</td></tr>
         </tbody>
       </table>
-      <p style="margin-top:1rem; color:var(--blue-soft);">모든 기술 질문은 <span class="mono">.planning/decisions/</span> ADR 문서 기준으로 답변합니다.</p>
     </section>
 
     <!-- 12. AI Agent 가산점 -->
@@ -435,7 +434,6 @@
           <p>Superpowers 스킬 체인(plan → execute → debug)에 더해,
              <strong>직접 만들어 공개한 Claude Code 플러그인 Keel</strong>(MIT)로
              라우팅·범위 정지·단일가설 디버깅·증거기반 검증을 규칙화.</p>
-          <a class="repo" href="https://github.com/poro832/Keel">github.com/poro832/Keel ↗</a>
         </div>
         <div class="b" style="border-color:rgba(255,122,61,.45);">
           <div class="tag">② 본인만의 기법</div>
@@ -449,7 +447,10 @@
           <p>ADR(결정) + 트러블슈팅 블로그(152 전 과정) + AGENTS.md(규칙) = 새 세션 에이전트도 즉시 맥락 복원.</p>
         </div>
       </div>
-      <p style="text-align:center; margin-top:1rem; color:var(--blue-soft);">
+      <div style="text-align:center; margin-top:1.1rem;">
+        <a class="repo" href="https://github.com/poro832/Keel">자작 플러그인 · github.com/poro832/Keel ↗</a>
+      </div>
+      <p style="text-align:center; margin-top:.7rem; color:var(--blue-soft);">
         AI 출력은 항상 <strong>화면·로그·테스트로 끝을 본다</strong> — 오진 2건을 실측으로 폐기
       </p>
     </section>
